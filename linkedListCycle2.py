@@ -24,22 +24,12 @@ class Solution(object):
         if not is_cycle:
             return None
 
-        cycle_len = 0
-        while True:
+        slow = head
+        # now only move fast one step each time
+        while slow != fast:
             slow = slow.next
-            fast = fast.next.next
-            cycle_len += 1
-            if slow == fast:
-                break
-
-        r1 = r2 = head
-        # position r2 cycle_len units ahead of r1
-        for i in range(cycle_len):
-            r2 = r2.next
-        while r1 != r2:
-            r1 = r1.next
-            r2 = r2.next
-        return r1
+            fast = fast.next
+        return fast
 
 
 
